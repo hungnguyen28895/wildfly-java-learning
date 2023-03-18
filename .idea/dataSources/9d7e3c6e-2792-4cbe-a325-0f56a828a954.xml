@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="person@localhost">
+  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.43">
+    <root id="1">
+      <ServerVersion>16.0.1000</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="master"/>
+    <database id="3" parent="1" name="Migration_test"/>
+    <database id="4" parent="1" name="model"/>
+    <database id="5" parent="1" name="msdb"/>
+    <database id="6" parent="1" name="person">
+      <Current>1</Current>
+    </database>
+    <database id="7" parent="1" name="tempdb"/>
+    <schema id="8" parent="6" name="INFORMATION_SCHEMA"/>
+    <schema id="9" parent="6" name="db_accessadmin"/>
+    <schema id="10" parent="6" name="db_backupoperator"/>
+    <schema id="11" parent="6" name="db_datareader"/>
+    <schema id="12" parent="6" name="db_datawriter"/>
+    <schema id="13" parent="6" name="db_ddladmin"/>
+    <schema id="14" parent="6" name="db_denydatareader"/>
+    <schema id="15" parent="6" name="db_denydatawriter"/>
+    <schema id="16" parent="6" name="db_owner"/>
+    <schema id="17" parent="6" name="db_securityadmin"/>
+    <schema id="18" parent="6" name="dbo">
+      <Current>1</Current>
+    </schema>
+    <schema id="19" parent="6" name="guest"/>
+    <schema id="20" parent="6" name="sys"/>
+  </database-model>
+</dataSource>
