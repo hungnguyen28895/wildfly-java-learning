@@ -1,5 +1,7 @@
 package org.learning.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.learning.entity.Person;
 import org.learning.entity.Phone;
 import org.learning.services.EntityService;
@@ -17,7 +19,6 @@ import java.util.Map;
 
 @WebServlet(urlPatterns = {"/person"})
 public class PersonController extends HttpServlet {
-
     @EJB
     EntityService<Person> personEntityService;
 
@@ -26,17 +27,14 @@ public class PersonController extends HttpServlet {
         var action = req.getParameter("action");
         var id = req.getParameter("id");
         personEntityService.setType(Person.class);
-        if (action.equalsIgnoreCase("search"))
+        if (action == null)
         {
+            getAllPerson(req);
             redirectToSearchPage(req, resp);
         }
         else if (action.equalsIgnoreCase("update"))
         {
-            redirectToUpdatePage(req, resp, id);
-        }
-        else if (action.equalsIgnoreCase("create"))
-        {
-            req.getServletContext().getRequestDispatcher("/CreatePerson.jsp").forward(req, resp);
+            getPerson(resp, id);
         }
     }
 
@@ -47,37 +45,37 @@ public class PersonController extends HttpServlet {
         var name = req.getParameter("name");
         var personId = req.getParameter("id");
 
-        if (action.equalsIgnoreCase("ADD"))
+        if (action.equalsIgnoreCase("add"))
         {
             var phoneNumbers = new ArrayList<>(getPhoneNumberList(req, 2));
             createPerson(name, phoneNumbers);
-            redirectToSearchPage(req, resp);
+            getAllPerson(req);
         }
         else if (action.equalsIgnoreCase("update"))
         {
             var phoneNumbers = new ArrayList<>(getPhoneNumberList(req, 2));
             updatePerson(personId, name, phoneNumbers);
-            redirectToSearchPage(req, resp);
+            getAllPerson(req);
         }
         else if (action.equalsIgnoreCase("search"))
         {
-            searchPerson(req, resp, name);
+            searchPerson(req, name);
         }
-
         else if (action.equalsIgnoreCase("delete"))
         {
-            deletePerson(req, resp, Long.valueOf(personId));
+            deletePerson(Long.valueOf(personId));
+            getAllPerson(req);
         }
+        redirectToSearchPage(req, resp);
     }
 
-    private void searchPerson(HttpServletRequest req, HttpServletResponse resp, String name) throws ServletException, IOException {
+    private void searchPerson(HttpServletRequest req, String name) {
         String stringQuery = "SELECT distinct p FROM Person p LEFT JOIN FETCH p.phones WHERE p.name LIKE :name";
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", "%" + name + "%");
 
         var persons = personEntityService.getListEntityByQuery(stringQuery, parameters);
         req.setAttribute("persons", persons);
-        req.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
     private void createPerson(String name, ArrayList<String> phoneNumbers) {
@@ -101,14 +99,13 @@ public class PersonController extends HttpServlet {
         personEntityService.updateEntity(person);
     }
 
-    private void deletePerson(HttpServletRequest req, HttpServletResponse resp, Long id) throws ServletException, IOException {
+    private void deletePerson(Long id) {
         Person person = personEntityService.getEntityById(id);
         if (person == null) {
             return;
         }
 
         personEntityService.deleteEntity(id);
-        redirectToSearchPage(req, resp);
     }
 
     private void getAllPerson(HttpServletRequest req) {
@@ -116,19 +113,17 @@ public class PersonController extends HttpServlet {
         req.setAttribute("persons", persons);
     }
 
-    private void getPerson(HttpServletRequest req, String id) {
+    private void getPerson(HttpServletResponse resp, String id) throws IOException {
         var person = personEntityService.getEntityById(Long.valueOf(id));
-        req.setAttribute("person", person);
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(person);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(json);
     }
 
     private void redirectToSearchPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getAllPerson(req);
-        req.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-    }
-
-    private void redirectToUpdatePage(HttpServletRequest req, HttpServletResponse resp, String id) throws ServletException, IOException {
-        getPerson(req, id);
-        req.getServletContext().getRequestDispatcher("/UpdatePerson.jsp").forward(req, resp);
+        req.getServletContext().getRequestDispatcher("/WEB-INF/SearchPerson.jsp").forward(req, resp);
     }
 
     private void addPhonesToPerson(Person person, ArrayList<String> phoneNumbers) {
