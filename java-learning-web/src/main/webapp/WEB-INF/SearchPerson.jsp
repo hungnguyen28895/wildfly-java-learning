@@ -12,129 +12,137 @@
     <title>Person</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-<body>
-    <div class="container">
-        <h1>Search Person</h1>
-        <button class="btn btn-light mb-2" data-toggle="modal" data-target="#createModal">Create person</button>
-        <div class="row">
-            <form class="form-inline" action="person" method="post">
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="searchName" class="sr-only">Name</label>
-                    <input type="text" class="form-control" id="searchName" name="name" placeholder="Name">
-                </div>
-                <input class="btn btn-primary mb-2" type="submit" value="Search" name="action">
-            </form>
-        </div>
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Phone 1</th>
-                <th scope="col">Phone 2</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${persons}" var="person">
-                <tr scope="row">
-                    <td>${person.name}</td>
-                    <td>${person.phones.size() > 0 ? person.phones.get(0).number : ''}</td>
-                    <td>${person.phones.size() > 1 ? person.phones.get(1).number : ''}</td>
-                    <td>
-                        <div class="d-inline-flex">
-                            <button class="btn btn-primary mr-2" onclick="fetchPerson(${person.id})" data-toggle="modal" data-target="#updateModal">Edit</button>
-                            <form action="person" method="post" onsubmit="return confirm('Are you sure you want to delete this record?');" style="margin-block-end: 0">
-                                <input type="hidden" name="id" value="${person.id}"/>
-                                <button class="btn btn-danger" type="submit" name="action" value="Delete">Delete</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+<body class="bg-light">
+    <main role="main" class="container">
+        <div class="my-3 p-3 bg-white rounded shadow" style="min-height: 95%">
+            <h1>Search Person</h1>
+            <button class="btn btn-link mb-2" data-toggle="modal" data-target="#createModal">Create person</button>
+            <div class="row">
+                <form class="form-inline" action="person" method="post">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="searchName" class="sr-only">Name</label>
+                        <input type="text" class="form-control" id="searchName" name="name" placeholder="Name">
+                    </div>
+                    <input class="btn btn-primary mb-2" type="submit" value="Search" name="action">
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-fit mt-5">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone 1</th>
+                        <th scope="col">Phone 2</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${persons}" var="person">
+                        <tr>
+                            <td scope="row">${person.name}</td>
+                            <td>${person.phones.size() > 0 ? person.phones.get(0).number : ''}</td>
+                            <td>${person.phones.size() > 1 ? person.phones.get(1).number : ''}</td>
+                            <td>
+                                <div class="d-flex flex-row">
+                                    <div>
+                                        <button class="btn btn-primary mr-2" onclick="fetchPerson(${person.id})" data-toggle="modal" data-target="#updateModal">Edit</button>
+                                    </div>
+                                    <div>
+                                        <form action="person" method="post" onsubmit="return confirm('Are you sure you want to delete this record?');" style="margin-block-end: 0">
+                                            <input type="hidden" name="id" value="${person.id}"/>
+                                            <button class="btn btn-danger" type="submit" name="action" value="Delete">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
 
-        <!-- Create Modal -->
-        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form action="person" method="post">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="createModalLabel">Create Person</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
+            <!-- Create Modal -->
+            <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form action="person" method="post">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="createModalLabel">Create Person</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                    <div class="row form-group mb-3">
+                                        <label class="col-sm-4 col-form-label float-right">Name</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" name="name" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group mb-3">
+                                        <label class="col-sm-4 col-form-label float-right">Number 1</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" name="number1" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row form-group mb-3">
+                                        <label class="col-sm-4 col-form-label float-right">Number 2</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" name="number2" type="text">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" name="action" value="Add">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Update Modal -->
+            <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form action="person" method="post">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="updateModalLabel">Update Person</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input class="form-control" id="id" name="id"  type="hidden" />
                                 <div class="row form-group mb-3">
-                                    <label class="col-sm-4 col-form-label float-right">Name</label>
+                                    <label class="col-sm-4 col-form-label float-right" for="name">Name</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" name="name" type="text">
+                                        <input class="form-control" id="name" name="name"  type="text" />
                                     </div>
                                 </div>
                                 <div class="row form-group mb-3">
-                                    <label class="col-sm-4 col-form-label float-right">Number 1</label>
+                                    <label class="col-sm-4 col-form-label float-right" for="number1">Number 1</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" name="number1" type="text">
+                                        <input class="form-control" id="number1" name="number1" type="text" />
                                     </div>
                                 </div>
                                 <div class="row form-group mb-3">
-                                    <label class="col-sm-4 col-form-label float-right">Number 2</label>
+                                    <label class="col-sm-4 col-form-label float-right" for="number2">Number 2</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control" name="number2" type="text">
+                                        <input class="form-control" id="number2" name="number2" type="text" />
                                     </div>
                                 </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="Add">Create</button>
-                        </div>
-                    </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" name="action" value="Update">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Update Modal -->
-        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form action="person" method="post">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="updateModalLabel">Update Person</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <input class="form-control" id="id" name="id"  type="hidden" />
-                            <div class="row form-group mb-3">
-                                <label class="col-sm-4 col-form-label float-right" for="name">Name</label>
-                                <div class="col-sm-8">
-                                    <input class="form-control" id="name" name="name"  type="text" />
-                                </div>
-                            </div>
-                            <div class="row form-group mb-3">
-                                <label class="col-sm-4 col-form-label float-right" for="number1">Number 1</label>
-                                <div class="col-sm-8">
-                                    <input class="form-control" id="number1" name="number1" type="text" />
-                                </div>
-                            </div>
-                            <div class="row form-group mb-3">
-                                <label class="col-sm-4 col-form-label float-right" for="number2">Number 2</label>
-                                <div class="col-sm-8">
-                                    <input class="form-control" id="number2" name="number2" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="Update">Save changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>
     <script>
         function fetchPerson(id) {
             let xhr = new XMLHttpRequest();

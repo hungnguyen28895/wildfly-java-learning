@@ -11,12 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c08d544b-beab-45af-8bf1-cc9be4dc4624" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-learning-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/java/org/learning/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-web/src/main/java/org/learning/controller/PersonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/webapp/CreatePerson.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/webapp/UpdatePerson.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/webapp/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-web/src/main/webapp/WEB-INF/faces-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/webapp/WEB-INF/SearchPerson.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-web/src/main/webapp/WEB-INF/SearchPerson.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +161,7 @@
       <workItem from="1679133461424" duration="1410000" />
       <workItem from="1679154104995" duration="968000" />
       <workItem from="1679155082209" duration="1926000" />
-      <workItem from="1679295955880" duration="13580000" />
+      <workItem from="1679295955880" duration="15989000" />
     </task>
     <servers />
   </component>
