@@ -10,8 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c08d544b-beab-45af-8bf1-cc9be4dc4624" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/java-learning-ejb/src/main/java/org/learning/services/BankService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/webapp/WEB-INF/SearchPerson.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-web/src/main/webapp/WEB-INF/SearchPerson.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-learning-ejb/src/main/java/org/learning/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-ejb/src/main/java/org/learning/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-learning-ejb/src/main/java/org/learning/entity/Phone.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-ejb/src/main/java/org/learning/entity/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-learning-ejb/src/main/java/org/learning/services/EntityBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-ejb/src/main/java/org/learning/services/BankBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-learning-ejb/src/main/java/org/learning/services/EntityService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-learning-ejb/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-ejb/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/java/org/learning/controller/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-web/src/main/java/org/learning/controller/BankController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java-learning-web/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/java-learning-web/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -41,21 +48,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Data/Projects/Java/wildfly-java-learning/java-learning-web/src/main/webapp/WEB-INF",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Data/Projects/Java/wildfly-java-learning/java-learning-web/src/main/webapp/WEB-INF&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Data\Projects\Java\wildfly-java-learning\java-learning-web\src\main\webapp\WEB-INF" />
@@ -162,6 +169,8 @@
       <workItem from="1679154104995" duration="968000" />
       <workItem from="1679155082209" duration="1926000" />
       <workItem from="1679295955880" duration="15989000" />
+      <workItem from="1679320460872" duration="8350000" />
+      <workItem from="1679331250638" duration="5672000" />
     </task>
     <servers />
   </component>

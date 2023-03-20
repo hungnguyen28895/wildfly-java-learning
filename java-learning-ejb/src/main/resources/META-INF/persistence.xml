@@ -23,11 +23,11 @@
    <persistence-unit name="java-learningPersistenceUnit">
       <!-- If you are running in a production environment, add a managed
          data source, this configuration uses the JakartaEE default data source is just for development and testing! -->
-      <class>org.learning.entity.Person</class>
-      <class>org.learning.entity.Phone</class>
+      <class>org.learning.entity.Account</class>
+      <class>org.learning.entity.Transaction</class>
       <properties>
          <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-         <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=person"/>
+         <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost:1433;databaseName=bank"/>
          <property name="javax.persistence.jdbc.user" value="sa"/>
          <property name="javax.persistence.jdbc.password" value="123123"/>
          <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
@@ -36,7 +36,7 @@
              Hibernate property instead:
              <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          -->
-         <property name="javax.persistence.schema-generation.database.action" value="create"/>
+         <property name="javax.persistence.schema-generation.database.action" value="update"/>
          <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
          <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
 

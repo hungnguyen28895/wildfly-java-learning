@@ -5,7 +5,7 @@
                              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
     <welcome-file-list>
-        <welcome-file>/person</welcome-file>
+        <welcome-file>/bank</welcome-file>
     </welcome-file-list>
 
 </web-app>
